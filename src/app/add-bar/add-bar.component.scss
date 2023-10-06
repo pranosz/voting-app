@@ -1,0 +1,32 @@
+.add-bar {
+    height: 34px;
+    width: 500px;
+    display: flex;
+    flex-direction: row;
+
+    .button-title {
+        width: 500px;
+        margin-right: 10px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: 500;
+    }
+}
+
+.add-button {
+    width: 28px;
+    height: 28px;
+    line-height: 20px;
+    font-size: 20px;
+
+    &::ng-deep .mat-button-wrapper{
+        line-height: 14px;
+        padding: 0;
+
+         .mat-icon {
+             font-size: 20px;
+             padding-right: 0;
+             padding-top: 3px;
+         }
+   }
+}

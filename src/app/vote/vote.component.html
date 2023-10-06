@@ -1,0 +1,32 @@
+<h1>Vote!</h1>
+<form [formGroup]="votesForm"  (ngSubmit)="onSubmitVote()">
+    <div class="vote-container">
+    
+        <div class="vote-item">         
+            <mat-form-field>
+              <mat-select formControlName="voter" (selectionChange)="onVoterChange($event)" required>
+                <mat-option>-- None --</mat-option>
+                <mat-option *ngFor="let voter of voters$ | async" [value]="voter">
+                    {{voter.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="vote-item">         
+            <mat-form-field>
+              <mat-select formControlName="candidate" required>
+                <mat-option>-- None --</mat-option>
+                <mat-option *ngFor="let candidate of candidates$ | async" [value]="candidate">
+                    {{candidate.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="vote-item"> 
+            <button mat-raised-button color="primary" [disabled]="votesForm.invalid || ( hasVoted$ | async )" type="submit"> Submit!</button>
+        </div>
+  
+    </div>
+</form>

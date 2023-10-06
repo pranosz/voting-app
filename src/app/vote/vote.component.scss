@@ -1,0 +1,10 @@
+.vote-container {
+    margin: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+    .vote-item {
+        margin: 5px;
+    }
+}
