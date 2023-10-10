@@ -52,7 +52,7 @@ export class VotingService {
         fVoters.hasVoted = voter.hasVoted;
        } else {
         this.voters.push(voter);
-        this.voters$.next([...this.voters]);
+        this.voters$.next(this.voters);
        }
     }
 
@@ -63,7 +63,7 @@ export class VotingService {
           fCandidate.votes = candidate.votes;
         } else {
           this.candidates.push(candidate);
-          this.candidates$.next([...this.candidates]);
+          this.candidates$.next(this.candidates);
         }
     }
 

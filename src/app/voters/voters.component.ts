@@ -1,25 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Voter } from '../models/voter.model';
 import { VotingService } from '../services/voting.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
-import { Observable } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
+import { Unsubscribe } from '../services/unsubscribe';
 
 @Component({
   selector: 'app-voters',
   templateUrl: './voters.component.html',
   styleUrls: ['./voters.component.scss']
 })
-export class VotersComponent {
+export class VotersComponent extends Unsubscribe implements OnInit {
 
-  dataSource$: Observable<Voter[]> = this.votingService.getVoters();
+  dataSource = new MatTableDataSource<Voter>();
   displayedColumns = ['name','hasVoted'];
 
   constructor(
     private votingService: VotingService,
     public dialog: MatDialog
-    ) { }
+    ) { 
+      super();
+    }
+
+  ngOnInit(): void {
+    this.votingService.getVoters().subscribe({
+      next: (data: Voter[]) => { 
+        if (data) {
+          this.dataSource.data = data; 
+        } 
+      },
+      error: (err) => { console.log("Error caught at Subscriber :" + err); }
+    });
+  }
 
   onAddVoter(): void {
     const dialogRef = this.dialog.open(DialogComponent, {
