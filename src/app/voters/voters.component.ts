@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { Unsubscribe } from '../services/unsubscribe';
+import { takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-voters',
@@ -24,13 +25,9 @@ export class VotersComponent extends Unsubscribe implements OnInit {
     }
 
   ngOnInit(): void {
-    this.votingService.getVoters().subscribe({
-      next: (data: Voter[]) => { 
-        if (data) {
-          this.dataSource.data = data; 
-        } 
-      },
-      error: (err) => { console.log("Error caught at Subscriber :" + err); }
+    this.votingService.getVoters().pipe(takeUntil(this.destroy$)).subscribe({
+      next: (data) => { this.dataSource.data = data },
+      error: (err) => { console.log("Error caught at getVoters subscriber :" + err); }
     });
   }
 

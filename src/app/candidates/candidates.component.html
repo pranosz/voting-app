@@ -1,8 +1,7 @@
 <app-add-bar title='Candidates' (addRecordEvent)="onAddCandidate()"></app-add-bar>
   
-<ng-container *ngIf="dataSource$ | async as data">
   <table mat-table 
-    [dataSource]="data" 
+    [dataSource]="dataSource" 
     class="mat-elevation-z8">
     
     <!-- Name Column -->
@@ -20,5 +19,4 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-</ng-container>
 
