@@ -73,10 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "voting-app:build:production"
+              "buildTarget": "voting-app:build:production"
             },
             "development": {
-              "browserTarget": "voting-app:build:development"
+              "buildTarget": "voting-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -84,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "voting-app:build"
+            "buildTarget": "voting-app:build"
           }
         },
         "test": {
