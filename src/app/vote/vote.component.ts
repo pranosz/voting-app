@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, Validators } from '@angular/forms';
 import { VotingService } from '../services/voting.service';
 import { Voter } from '../models/voter.model';
 import { Candidate } from '../models/candidate.model';
@@ -18,12 +18,12 @@ export class VoteComponent {
   candidates$: Observable<Candidate[]> = this.votingService.getCandidates();
 
   votesForm = this.fb.group({
-    voter: new FormControl([], [Validators.required]),
-    candidate: new FormControl([], [Validators.required])
+    voter: new UntypedFormControl([], [Validators.required]),
+    candidate: new UntypedFormControl([], [Validators.required])
   });
 
   constructor(
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private votingService: VotingService
     ) { }
 
